@@ -9,17 +9,25 @@
 	
 <script type="text/javascript">
 var year=1991,month=1;
-get_today();
-
+callajax("get_today");
 function callajax(request_method) {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-     	console.log(this.responseText);
+    	document.getElementById("calender").innerHTML = "";
+     	document.getElementById("calender").innerHTML = this.responseText;
+   	
     }
   };
   xhttp.open("GET",set_method(request_method), true);
   xhttp.send();
+}
+
+function set_today(){
+	var Today=new Date();
+	var showtoday = Today.getFullYear()+ " 年 " + (Today.getMonth()+1) + " 月 " + Today.getDate() + " 日";
+	document.getElementById("show_this_day").innerHTML = showtoday;
+
 }
 
 function set_method(request_method){
@@ -28,9 +36,9 @@ function set_method(request_method){
 		request_method = "caleder.php?request_method=get_today";
 	}
 	else{
-		request_method = "caleder.php?request_method=get_date&";
-		request_method = request_method+year.toString()+"&";
-		request_method = request_method+month.toString();
+		request_method = "caleder.php?request_method=set_date&";
+		request_method = request_method+"year="+year.toString()+"&";
+		request_method = request_method+"month="+month.toString();
 	}
 	return request_method;
 }
@@ -38,22 +46,16 @@ function set_method(request_method){
 function year_keyup(){
 	if(event.keyCode == 13){
 		var input_data = document.getElementById('year_input').value;
-		var input_number = parseInt(input_data);
+		year = parseInt(input_data);
 
-		if(!isNaN(input_data)&&input_number>0){
-
+		if(!isNaN(input_data)&&year>0){
+			callajax("set_method");
 			
 		}
 		else{
 			alert("input errot");
 		}
 	}
-}
-
-function get_today(){
-	callajax("get_today");
-
-
 }
 
 function span_month_keyup(clicked_id){
@@ -80,12 +82,12 @@ function span_month_keyup(clicked_id){
 
 		document.getElementsByTagName("option")[month-1].selected = true;
 		document.getElementById('year_input').value = year;
+		callajax("set_method");
 }
 
 function month_selected(){
 	var value = document.getElementById("month_select").value;
 	month  = value;
-
 }
 
 
@@ -94,6 +96,11 @@ function month_selected(){
 </head>
 
 <style type="text/css">
+	.vacation{
+		color:red;
+
+	}
+
 	.calender{
 		border: 1px solid;
 		text-align: center;
@@ -115,6 +122,9 @@ function month_selected(){
 		border: 1px solid;
 	}
 	
+	i{
+		color:rgba(128, 128, 128, 0.56);
+	}
 	.vacation{
 		color: red;
 
@@ -122,20 +132,20 @@ function month_selected(){
 
 </style>
 
-<body>
+<body onload=set_today()>
 	<div class="content">
 	<ul>
 			<li>
 				<span id= "pre_month" class="glyphicon glyphicon-menu-left"; onclick = "span_month_keyup(this.id)"></span>
 			</li>
 					<li>
-						<table class = "calender" id="calender">
+						<table class = "calender">
 						<tr>
 							<td>
-								<input type="button" value="今天" onclick="get_today()">	
+								<input type="button" value="今天" onclick="callajax('get_today')">	
 							</td>
 							<td colspan="6">
-								<b id="today">今天日期</b>
+								<b id="show_this_day">今天日期</b>
 							</td>
 						</tr>
 						<tr>
@@ -167,6 +177,7 @@ function month_selected(){
 							<td><span class ="vacation" >六</span></td>
 							<td><span class ="vacation" >日</span></td>
 						</tr>
+						<table class = "calender" id="calender">
 						</table>
 					</li>
 			<li>
