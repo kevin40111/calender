@@ -6,7 +6,7 @@
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<title>calender</title>
 
-	
+<?// step1?>
 <script type="text/javascript">
 var year=1991,month=1;
 callajax("get_today");
