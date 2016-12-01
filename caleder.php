@@ -1,52 +1,42 @@
 <?php
-	
-	if($_GET['request_method']=='get_today'){
-		get_today();
-	}
-	else{
-		return_table($_GET['year'],$_GET['month'],0);
-	}
-
-
-	function get_today(){
-	$today 	=	explode("-",date("Y-m-d"));
+	date_default_timezone_set('Asia/Taipei');
+	$today 	=	explode("-",date("Y-m-d H:i:s"));
 	$year	=	$today[0];
 	$month	=	$today[1];
 	$date	=	$today[2];
+	$is_today = false;
+	if($_GET["year"] == $year && $_GET["month"] == $month)$is_today=true;
 
-	return_table($year,$month,$date);
-	}
+	$pre_month 	=	date("t",mktime(0,0,1,$_GET["month"]-1,1,$_GET["year"]));
+	$start_date =	date("w",mktime(0,0,1,$_GET["month"]  ,1,$_GET["year"]));
+	$end_date 	=	date("t",mktime(0,0,1,$_GET["month"]  ,1,$_GET["year"]));
 
-	function return_table($year,$month,$date){
-	$first_date =	date("w",mktime(0,0,0,$month,1,$year));
-	$pre_month 	=	date("t",mktime(0,0,0,$month-1,1,$year));
-	$end_date 	=	date("t",mktime(0,0,0,$month,1,$year));
-	$calender	=	"";
-
-		if((int)$first_date==0)$first_date=7;
-		$now_date=2-(int)$first_date;
-		for($i=0;$i<6;$i++){
-			$calender=$calender."<tr>";
-			for($j=1;$j<=7;$j++){
-				//顯示前個月
-				if($now_date<1)$calender = $calender."<td><i>".($pre_month+$now_date)."</i></td>";						
-				//顯示這個月
-				if($now_date>=1&&$now_date<=$end_date)
-				if($j==7||$j==6)$calender = $calender."<td><span class='vacation'>".$now_date."</sapn></td>";					
-				else $calender = $calender."<td>".$now_date."</td>";	
-				//顯示下個月
-				if($now_date>$end_date)$calender = $calender."<td><i>".($now_date-$end_date)."</i></td>";
-				$now_date++;
-			}
-			$calender=$calender."</tr>";
-			if($now_date>(int)$end_date){
-				echo $calender;
-				break;		
-			}
-		}
-
-	}
-
-
+	$now_date = 1-$start_date;
+	$weeks = ($start_date+$end_date)/7;
 
 ?>
+	<table id="calender_date">
+	    <?for($j=0;$j<$weeks;$j++){?>
+	        <tr>
+	            <?for($i=0;$i<7;$i++){?>
+					<td class="td_date" id=<?=($_GET["date"]==$now_date && $is_today) ? ( "today" ) : ( "" );?>>
+					<?if($i==0||$i==6):?><span class="vacation"><?endif;?>
+						<?if(!($now_date>0 && $now_date<=$end_date)):?><i><?endif;?>
+								<?
+									if($now_date<=0){
+										echo $pre_month+$now_date;
+									}
+									else if ($now_date>0 && $now_date<=$end_date) {
+										echo $now_date;
+									}
+									else if ($now_date>$end_date) {
+										echo $now_date-$end_date;
+									}
+								?>
+						<?if(!($now_date>0 && $now_date<=$end_date)):?></i><?endif;?>
+					<?if($i==0||$i==6):?></span><?endif;?>
+					</td>
+		        <?$now_date++;}?>
+	        </tr>
+	    <?}?>
+	</table>

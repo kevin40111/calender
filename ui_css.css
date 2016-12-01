@@ -1,0 +1,62 @@
+    .vacation{
+        color:red;
+    }
+
+
+    body{
+        width:1180px;
+        margin:auto;
+
+    }
+
+    .calender{
+        border: 1px solid;
+        text-align: center;
+    }
+
+    .content{
+        padding-top: 20px;
+        margin: auto;
+        display: table;
+        font-size: 25px;
+    }
+
+    td{
+        text-align: center;
+        width:80px;
+        padding: 5px;
+        border: 1px solid;
+    }
+
+    i{
+        color:rgba(128, 128, 128, 0.56);
+    }
+
+    .block{
+        float:left;
+    }
+
+    .block_right,.block_left{
+        padding-top: 30%;
+
+    }
+
+    .td_date:hover{
+        background-color: #9d9d9d!important;
+    }
+
+
+    .btn:hover{
+        background-color:#ffffff;
+    }
+    .btn:focus{
+        outline:none;
+        background-color:#ffffff;
+    }
+    #today{
+        background-color: yellow;
+
+    }
+    .clear{
+        clear:left ;
+    }
