@@ -7,6 +7,9 @@
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<title>calender</title>
 
+
+
+
 <script type="text/javascript">
 var year=1991,month=1;
 //callajax("get_today");
@@ -94,7 +97,7 @@ function month_selected(){
 <body onload=set_today()>
 	<div class="content">
 		<div class="block block_left">
-			<span id= "pre_month" class="glyphicon glyphicon-menu-left"; onclick = "span_month_keyup(this.id)"></span>
+			<span id= "pre_month" class="month_pick glyphicon glyphicon-menu-left"; onclick = "span_month_keyup(this.id)"></span>
 		</div>
 		<div class="block block_center">
 			<table class = "calender">
@@ -112,9 +115,9 @@ function month_selected(){
 					</td>
 					<td colspan="3">
 					<select class="btn btn-default" id="month_select" onchange="month_selected()">
-						<?for($i=1;$i<=12;$i++):?>
-							<option value="<?=$i?>"><?=$i?></option>
-						<?endfor;?>
+						<?php for($i=1;$i<=12;$i++):?>
+							<option value="<?php echo $i?>"><?php echo $i?></option>
+						<?php endfor;?>
 					</select>月</td>
 				</tr>
 				<tr style="background-color:#d9d9d9;">
@@ -130,7 +133,7 @@ function month_selected(){
 			<div id="return_date"></div>
 		</div>
 		<div class="block block_right">
-			<span id= "nex_month" class="glyphicon glyphicon-menu-right" onclick = "span_month_keyup(this.id)"></span>
+			<span id= "nex_month" class="month_pick glyphicon glyphicon-menu-right" onclick = "span_month_keyup(this.id)"></span>
 		</div>
 		<div class="clear"></div>
 	</div>

@@ -2,13 +2,6 @@
         color:red;
     }
 
-
-    body{
-        width:1180px;
-        margin:auto;
-
-    }
-
     .calender{
         border: 1px solid;
         text-align: center;
@@ -21,6 +14,12 @@
         font-size: 25px;
     }
 
+    body{
+        width:1180px;
+        margin:auto;
+
+    }
+
     td{
         text-align: center;
         width:80px;
@@ -30,6 +29,10 @@
 
     i{
         color:rgba(128, 128, 128, 0.56);
+    }
+
+    .month_pick:hover{
+        color: red;
     }
 
     .block{

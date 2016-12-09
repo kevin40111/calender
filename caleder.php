@@ -1,5 +1,4 @@
 <?php
-	date_default_timezone_set('Asia/Taipei');
 	$today 	=	explode("-",date("Y-m-d H:i:s"));
 	$year	=	$today[0];
 	$month	=	$today[1];
@@ -16,13 +15,13 @@
 
 ?>
 	<table id="calender_date">
-	    <?for($j=0;$j<$weeks;$j++){?>
+	    <?php for($j=0;$j<$weeks;$j++){?>
 	        <tr>
-	            <?for($i=0;$i<7;$i++){?>
-					<td class="td_date" id=<?=($_GET["date"]==$now_date && $is_today) ? ( "today" ) : ( "" );?>>
-					<?if($i==0||$i==6):?><span class="vacation"><?endif;?>
-						<?if(!($now_date>0 && $now_date<=$end_date)):?><i><?endif;?>
-								<?
+	            <?php for($i=0;$i<7;$i++){?>
+					<td class="td_date" id=<?php echo($_GET["date"]==$now_date && $is_today) ? ( "today" ) : ( "" );?>>
+					<?php if($i==0||$i==6):?><span class="vacation"><?php endif;?>
+						<?php if(!($now_date>0 && $now_date<=$end_date)):?><i><?php endif;?>
+								<?php
 									if($now_date<=0){
 										echo $pre_month+$now_date;
 									}
@@ -33,10 +32,10 @@
 										echo $now_date-$end_date;
 									}
 								?>
-						<?if(!($now_date>0 && $now_date<=$end_date)):?></i><?endif;?>
-					<?if($i==0||$i==6):?></span><?endif;?>
+						<?php if(!($now_date>0 && $now_date<=$end_date)):?></i><?php endif;?>
+					<?php if($i==0||$i==6):?></span><?php endif;?>
 					</td>
-		        <?$now_date++;}?>
+		        <?php $now_date++;}?>
 	        </tr>
-	    <?}?>
+	    <?php }?>
 	</table>
