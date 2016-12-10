@@ -1,15 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>
-	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<link rel="stylesheet" href="ui_css.css">
-	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<title>calender</title>
-
-
-
-
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="ui_css.css">
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>calender</title>
 <script type="text/javascript">
 var year=1991,month=1;
 //callajax("get_today");
@@ -18,8 +14,8 @@ function callajax() {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-    	document.getElementById("return_date").innerHTML = "";
-     	document.getElementById("return_date").innerHTML = this.responseText;
+        document.getElementById("return_date").innerHTML = "";
+        document.getElementById("return_date").innerHTML = this.responseText;
     }
   };
   xhttp.open("GET",set_method(), true);
@@ -39,11 +35,11 @@ function set_today(){
 }
 
 function set_method(request_method){
-		request_method  = "caleder.php?";
-		request_method += "year=" +year.toString()+"&";
-		request_method += "month="+month.toString()+"&";
-		request_method += "date=" +date;
-	return request_method;
+        request_method  = "caleder.php?";
+        request_method += "year=" +year.toString()+"&";
+        request_method += "month="+month.toString()+"&";
+        request_method += "date=" +date;
+    return request_method;
 }
 
 function year_keyup(){
