@@ -10,7 +10,8 @@
 var year=1991,month=1;
 //callajax("get_today");
 
-function callajax() {
+function callajax() 
+{
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -22,7 +23,8 @@ function callajax() {
   xhttp.send();
 }
 
-function set_today(){
+function set_today()
+{
     var Today=new Date();
     year  = Today.getFullYear();
     month = Today.getMonth()+1;
@@ -34,7 +36,8 @@ function set_today(){
     callajax();
 }
 
-function set_method(request_method){
+function set_method(request_method)
+{
         request_method  = "caleder.php?";
         request_method += "year=" +year.toString()+"&";
         request_method += "month="+month.toString()+"&";
@@ -42,7 +45,8 @@ function set_method(request_method){
     return request_method;
 }
 
-function year_keyup(){
+function year_keyup()
+{
     if(event.keyCode == 13){
         var input_data = document.getElementById('year_input').value;
         year = parseInt(input_data);
@@ -55,7 +59,8 @@ function year_keyup(){
     }
 }
 
-function span_month_keyup(clicked_id){
+function span_month_keyup(clicked_id)
+{
     switch(clicked_id) {
             case "pre_month":
                 month--;
@@ -83,7 +88,8 @@ function span_month_keyup(clicked_id){
 }
 
 
-function month_selected(){
+function month_selected()
+{
      month = document.getElementById("month_select").value;
      callajax();
 }
